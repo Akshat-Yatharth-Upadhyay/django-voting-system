@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pollster{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="navbar">
+    <div class="nav-inner">
+        <a class="brand" href="{% url 'polls:index' %}">Pollster</a>
+        <a class="admin-link" href="/admin/">Admin</a>
+    </div>
+</header>
+<main class="container">
+    {% if messages %}
+        {% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+<footer>Fundamentals of Data Science • Django Voting System</footer>
+</body>
+</html>

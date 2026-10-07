@@ -1,0 +1,19 @@
+FASTEST WAY TO RUN (Windows)
+
+1. Extract this ZIP.
+2. Open the folder in VS Code.
+3. Open Terminal in the project folder.
+4. Run:
+   python -m venv venv
+   venv\Scripts\activate
+   pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py seed_data
+   python manage.py runserver
+5. Open http://127.0.0.1:8000/
+
+For admin:
+python manage.py createsuperuser
+Then open http://127.0.0.1:8000/admin/
+
+IMPORTANT: If 'python' does not work on your PC, try 'py' instead.

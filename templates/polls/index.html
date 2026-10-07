@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Pollster | Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <span class="tag">Django Voting System</span>
+    <h1>Share your opinion.</h1>
+    <p>Choose a poll, submit your vote, and see the results instantly.</p>
+</section>
+<section class="section-head"><h2>Available Polls</h2><span>{{ questions|length }} polls</span></section>
+{% if questions %}
+<div class="grid">
+    {% for question in questions %}
+    <article class="card">
+        <div class="number">0{{ forloop.counter }}</div>
+        <h3>{{ question.question_text }}</h3>
+        <p class="date">Published {{ question.pub_date|date:'d M Y' }}</p>
+        <div class="actions">
+            <a class="btn primary" href="{% url 'polls:detail' question.id %}">Vote Now</a>
+            <a class="btn secondary" href="{% url 'polls:results' question.id %}">Results</a>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty"><h3>No polls available</h3><p>Run <code>python manage.py seed_data</code> or add polls from the admin panel.</p></div>
+{% endif %}
+{% endblock %}

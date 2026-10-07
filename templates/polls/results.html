@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Pollster | Results{% endblock %}
+{% block content %}
+<a class="back" href="{% url 'polls:index' %}">← Back to polls</a>
+<div class="results-card">
+    <span class="tag">Live Results</span>
+    <h1>{{ question.question_text }}</h1>
+    <p class="total">Total votes: <strong>{{ total_votes }}</strong></p>
+    {% for item in choices %}
+    <div class="result-row">
+        <div class="result-label"><span>{{ item.choice.choice_text }}</span><strong>{{ item.choice.votes }} ({{ item.percentage }}%)</strong></div>
+        <div class="bar"><div class="fill" style="width: {{ item.percentage }}%"></div></div>
+    </div>
+    {% endfor %}
+    <div class="actions">
+        <a class="btn secondary" href="{% url 'polls:index' %}">All Polls</a>
+        <a class="btn primary" href="{% url 'polls:detail' question.id %}">Vote Again</a>
+    </div>
+</div>
+{% endblock %}

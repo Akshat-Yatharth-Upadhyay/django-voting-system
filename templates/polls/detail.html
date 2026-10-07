@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Pollster | Vote{% endblock %}
+{% block content %}
+<a class="back" href="{% url 'polls:index' %}">← Back to polls</a>
+<div class="vote-card">
+    <span class="tag">Cast Your Vote</span>
+    <h1>{{ question.question_text }}</h1>
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        <div class="options">
+        {% for choice in question.choices.all %}
+            <label class="option">
+                <input type="radio" name="choice" value="{{ choice.id }}">
+                <span>{{ choice.choice_text }}</span>
+            </label>
+        {% endfor %}
+        </div>
+        <button class="btn primary full" type="submit">Submit Vote</button>
+    </form>
+</div>
+{% endblock %}
